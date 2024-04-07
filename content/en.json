@@ -1,0 +1,39 @@
+{
+  "Home": {
+    "test": "Test 測試",
+    "navigation": {
+      "home": "Home",
+      "about": "About",
+      "contact": "Contact Us"
+    }
+  },
+  "Navbar": {
+    "title": "CUHK Map",
+    "profile": "Profile",
+    "settings": "Settings",
+    "help&feedback": "Help & Feedback",
+    "logout": "Logout",
+    "enterDarkmode": "Enter Dark Mode",
+    "enterLightmode": "Enter Light Mode"
+  },
+  "Features": {
+    "searchExplore": "Explore",
+    "searchPath": "Path",
+    "searchBus": "Bus",
+    "searchBuilding": "Building",
+    "searchCanteen": "Food",
+    "searchFacility": "Facility",
+    "searchToilet": "Toilet"
+  },
+  "LanguageSettings": {
+    "pick": "Pick a language",
+    "en": "English(英文)",
+    "cn": "Traditional Chinese(中文)"
+  },
+  "SearchSection": {
+    "getPath": "Get the path",
+    "search": "Search",
+    "departure": "Departure",
+    "destination": "Destination"
+  }
+}

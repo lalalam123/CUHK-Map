@@ -14,13 +14,42 @@ const Location: React.FC = () => {
     if (!navigator.geolocation) {
       console.error("Geolocation is not supported by your browser");
     } else {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setCoordinates({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          altitude: position.coords.altitude,
-        });
-      });
+      let watchId: number | null = null;
+
+      const updateLocation = () => {
+        if (watchId !== null) {
+          navigator.geolocation.clearWatch(watchId);
+        }
+
+        watchId = navigator.geolocation.watchPosition(
+          (position) => {
+            setCoordinates({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+              altitude: position.coords.altitude,
+            });
+          },
+          (error) => console.log(error),
+          {
+            maximumAge: 0,
+            timeout: 30000,
+          }
+        );
+      };
+
+      // Call updateLocation immediately and then every 30 seconds
+      updateLocation();
+      const intervalId = setInterval(updateLocation, 30000);
+
+      // To prevent memory leaks and unnecessary work
+      // Cleanup function to stop watching user's position and interval when component unmounts
+
+      return () => {
+        if (watchId !== null) {
+          navigator.geolocation.clearWatch(watchId);
+        }
+        clearInterval(intervalId);
+      };
     }
   }, []);
 

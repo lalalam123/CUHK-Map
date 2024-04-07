@@ -65,3 +65,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   Desc: A declarative Google Map React component using React, it allows you to render Google Map in your React application
 
   Reason: js api loader is easier to use, while this react-wrapper has some issue that is hard to fix
+
+- Ref: https://github.com/adrianhajdin/project_travel_advisor

@@ -1,0 +1,39 @@
+{
+  "Home": {
+    "test": "Test 測試",
+    "navigation": {
+      "home": "主頁",
+      "about": "關於",
+      "contact": "聯絡我們"
+    }
+  },
+  "Navbar": {
+    "title": "中大地圖",
+    "profile": "個人檔案",
+    "settings": "設定",
+    "help&feedback": "幫助與回饋",
+    "logout": "登出",
+    "enterDarkmode": "開啟暗影模式",
+    "enterLightmode": "開啟明亮模式"
+  },
+  "Features": {
+    "searchExplore": "探索",
+    "searchPath": "搜尋路徑",
+    "searchBus": "校巴",
+    "searchBuilding": "建築物",
+    "searchCanteen": "餐飲",
+    "searchFacility": "設施",
+    "searchToilet": "洗手間"
+  },
+  "LanguageSettings": {
+    "pick": "選擇語言",
+    "en": "英文(English)",
+    "cn": "中文(Traditional Chinese)"
+  },
+  "SearchSection": {
+    "getPath": "搜尋路徑",
+    "search": "搜尋",
+    "departure": "起點",
+    "destination": "終點"
+  }
+}
