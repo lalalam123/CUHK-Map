@@ -44,19 +44,17 @@ const HomePage: React.FC = () => {
 
   return (
     <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
+      <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
         <DepartureContext.Provider value={departureContextValue}>
           <DestinationContext.Provider value={destinationContextValue}>
-            <div className="dark w-full ">
+            <div className="w-full bg-white dark:bg-black text-slate-900 dark:text-white font-medium">
               <Header />
               <FeatureList />
               <div className="p-6 grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div>
                   <SearchSection />
                 </div>
-                <div className="col-span-2">
-                  <GoogleMapSection />
-                </div>
+                <div className="col-span-2">{/* <GoogleMapSection /> */}</div>
               </div>
             </div>
           </DestinationContext.Provider>

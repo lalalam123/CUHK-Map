@@ -47,7 +47,7 @@ export default function Header() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className="w-full"
+              className="w-full font-medium my-3"
               color={index === menuItems.length - 1 ? "danger" : "foreground"}
               href=""
               size="lg"

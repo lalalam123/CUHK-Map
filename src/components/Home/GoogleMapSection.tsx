@@ -87,7 +87,7 @@ function GoogleMapSection() {
     </div>
   ) : (
     <div className="flex justify-center items-center h-screen">
-      <GridLoader color={"#ffffff"} loading={true} size={15} />
+      <GridLoader loading={true} size={15} />
     </div>
   );
 }

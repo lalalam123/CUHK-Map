@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Image } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
+import { IoLanguageSharp } from "react-icons/io5";
 
 const LangSwitcher: React.FC = () => {
   interface Option {
@@ -29,12 +30,13 @@ const LangSwitcher: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center bg-dark">
-      <div className="relative text-lg w-72">
+      <div className="text-lg w-72">
         <button
-          className="m-2 justify-between w-full border border-light text-light bg-dark hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-dark dark:hover:bg-gray-700 dark:focus:ring-gray-500"
+          className="my-2 justify-between w-full border border-black text-black dark:border-white dark:text-white hover:text-white dark:border-light dark:text-light bg-dark hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-dark dark:hover:bg-gray-700 dark:focus:ring-gray-500"
           onClick={() => setIsOptionsExpanded(!isOptionsExpanded)}
           onBlur={() => setIsOptionsExpanded(false)}
         >
+          <IoLanguageSharp />
           {t("pick")}
           <svg
             fill="none"
