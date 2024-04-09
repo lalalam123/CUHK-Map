@@ -42,5 +42,8 @@
     "almostThere": "下載緊...",
     "yourMapIsReady": "準備就緒",
     "welcome": "歡迎來到中大地圖"
+  },
+  "ErrorMessage": {
+    "notFeature": "抱歉，這個服務暫時未開通，請嘗試其他服務能否解決閣下的需求，或到意見反饋區提出意見。"
   }
 }

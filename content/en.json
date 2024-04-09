@@ -42,5 +42,8 @@
     "almostThere": "Almost there ...",
     "yourMapIsReady": "Your map is ready",
     "welcome": "Welcome to CUHK Map"
+  },
+  "ErrorMessage": {
+    "notFeature": "Sorry, this feature is currently not available, please try again later."
   }
 }

@@ -115,7 +115,7 @@ export default function FeatureList() {
       <NavbarContent className="flex gap-4 overflow-x-auto" justify="start">
         {menuItems.map((item, index) => (
           <NavbarItem key={index}>
-            <Link className="text-white" href={`/${language}${item.path}`}>
+            <Link className="text-black dark:text-white" href={`/${language}${item.path}`}>
               <div
                 style={{
                   display: "flex",
@@ -130,21 +130,7 @@ export default function FeatureList() {
                 >
                   {item.icon}
                 </div>
-                <p
-                  className="font-medium"
-                  color="foreground"
-                  // onClick={(e) => {
-                  //   e.preventDefault();
-                  //   console.log("running");
-                  //   if (pathname === item.path) return;
-                  //   else if (pathname.startsWith("/en") || pathname.startsWith("/cn")) {
-                  //     const language = pathname.split("/")[1];
-                  //     router.push(`/${language}${item.path}`);
-                  //   } else {
-                  //     router.push(item.path);
-                  //   }
-                  // }}
-                >
+                <p className="font-medium" color="foreground">
                   {t(`${item.label}`)}
                 </p>
               </div>
