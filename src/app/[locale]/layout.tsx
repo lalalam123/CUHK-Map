@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
+import React, { useMemo } from "react";
 import { Inter, Montserrat } from "next/font/google";
 import "../globals.css";
 
+import Header from "../../components/Header/header";
+import FeatureList from "@/components/Header/featureList";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import { ThemeProvider } from "./provider";
+import { DepartureContext } from "@/components/context/DepartureContext";
+import { DestinationContext } from "@/components/context/DestinationContext";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -28,9 +34,23 @@ export default function RootLayout({ children, locale }: RootLayoutProps) {
   const messages = useMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className="overscroll-none">
       <NextIntlClientProvider locale={locale} messages={messages}>
-        <body className={inter.className}>{children}</body>
+        <ThemeProvider>
+          <body className={inter.className}>
+            <div className="w-full bg-white dark:bg-black text-slate-900 dark:text-white font-medium">
+              <Header />
+              <FeatureList />
+              <div className="p-6 grid grid-cols-1 sm:grid-cols-3">
+                <div>{children}</div>
+                <div className="col-span-2">
+                  {/* <GoogleMapSection /> */}
+                  <h1>Map</h1>
+                </div>
+              </div>
+            </div>
+          </body>
+        </ThemeProvider>
       </NextIntlClientProvider>
     </html>
   );

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -17,7 +18,7 @@ import { useTranslations } from "next-intl";
 
 export default function Header() {
   const t = useTranslations("Navbar");
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [t("profile"), t("settings"), t("help&feedback"), t("logout")];
 

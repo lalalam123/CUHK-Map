@@ -30,9 +30,9 @@ const LangSwitcher: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center bg-dark">
-      <div className="text-lg w-72">
+      <div className="text-lg w-80">
         <button
-          className="my-2 justify-between w-full border border-black text-black dark:border-white dark:text-white hover:text-white dark:border-light dark:text-light bg-dark hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-dark dark:hover:bg-gray-700 dark:focus:ring-gray-500"
+          className="my-2 justify-between w-full border border-black text-black dark:border-white dark:text-white  dark:border-light dark:text-light bg-dark focus:ring-2 ring-black focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-dark"
           onClick={() => setIsOptionsExpanded(!isOptionsExpanded)}
           onBlur={() => setIsOptionsExpanded(false)}
         >
@@ -56,11 +56,11 @@ const LangSwitcher: React.FC = () => {
               : "translate-y-0 scale-y-100 opacity-100"
           }`}
         >
-          <ul className="absolute left-0 right-0 my-2 bg-gray-700 divide-y rounded-lg shadow-lg overflow-hidden">
+          <ul className="text-black dark:text-white border-black dark:border-white divide-black dark:divide-white absolute left-0 right-0 my-2 divide-y border rounded-lg shadow-lg overflow-hidden">
             {options.map((option, index) => (
               <li
                 key={index}
-                className="px-3 py-3 transition-colors duration-300 hover:bg-gray-700 text-light flex items-center cursor-pointer"
+                className="px-3 py-3 transition-colors duration-300 flex items-center cursor-pointer"
                 onMouseDown={(e) => {
                   e.preventDefault();
                   setOption(option);

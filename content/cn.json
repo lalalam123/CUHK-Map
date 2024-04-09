@@ -35,5 +35,12 @@
     "search": "搜尋",
     "departure": "起點",
     "destination": "終點"
+  },
+  "WaitingMessage": {
+    "loading": "正在準備地圖...",
+    "holdOn": "等多陣...",
+    "almostThere": "下載緊...",
+    "yourMapIsReady": "準備就緒",
+    "welcome": "歡迎來到中大地圖"
   }
 }

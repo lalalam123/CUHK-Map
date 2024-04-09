@@ -35,5 +35,12 @@
     "search": "Search",
     "departure": "Departure",
     "destination": "Destination"
+  },
+  "WaitingMessage": {
+    "loading": "Your map is loading ...",
+    "holdOn": "Hold on ...",
+    "almostThere": "Almost there ...",
+    "yourMapIsReady": "Your map is ready",
+    "welcome": "Welcome to CUHK Map"
   }
 }
