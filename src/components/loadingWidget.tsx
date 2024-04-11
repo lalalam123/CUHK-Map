@@ -20,7 +20,7 @@ export const MapLoadingWidget = () => {
 
   return (
     <div className="flex flex-col gap-5 justify-center items-center h-64 sm:h-screen">
-      {/* <GridLoader loading={true} size={15} color="#AAAAAA" /> */}
+      <GridLoader loading={true} size={15} color="#AAAAAA" />
       <h1 color="#AAAAAA">
         <TextTransition className="text-gray-400" springConfig={presets.wobbly}>
           {TEXTS[index % TEXTS.length]}

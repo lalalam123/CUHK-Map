@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
 import React, { useMemo } from "react";
 import { Inter, Montserrat } from "next/font/google";
+import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
 import "../globals.css";
+
+import {
+  APIProvider,
+  Map,
+  useMap,
+  useMapsLibrary,
+  Marker,
+  AdvancedMarker,
+  Pin,
+} from "@vis.gl/react-google-maps";
 
 import Header from "../../components/Header/header";
 import FeatureList from "@/components/Header/featureList";
@@ -10,8 +21,16 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { ThemeProvider } from "./provider";
-import { DepartureContext } from "@/components/context/DepartureContext";
-import { DestinationContext } from "@/components/context/DestinationContext";
+import { DepartureContext } from "@/components/context/context";
+import { DestinationContext } from "@/components/context/context";
+import GoogleMapSection from "@/components/Home/GoogleMapSection";
+import dynamic from "next/dynamic";
+import { MapLoadingWidget } from "@/components/loadingWidget";
+
+const DynamicGoogleMapSection = dynamic(() => import("@/components/Home/GoogleMapSection"), {
+  ssr: false,
+  loading: () => <MapLoadingWidget />,
+});
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -37,19 +56,21 @@ export default function RootLayout({ children, locale }: RootLayoutProps) {
     <html lang={locale} className="overscroll-none">
       <NextIntlClientProvider locale={locale} messages={messages}>
         <ThemeProvider>
-          <body className={inter.className}>
-            <div className="w-full bg-white dark:bg-black text-slate-900 dark:text-white font-medium">
-              <Header />
-              <FeatureList />
-              <div className="p-6 grid grid-cols-1 sm:grid-cols-3">
-                <div>{children}</div>
-                <div className="col-span-2">
-                  {/* <GoogleMapSection /> */}
-                  <h1>Map</h1>
+          <HydrationOverlay>
+            <body className={inter.className}>
+              <div className="w-full bg-white dark:bg-black text-slate-900 dark:text-white font-medium">
+                <Header />
+                <FeatureList />
+                <div className="p-6 grid grid-cols-1 sm:grid-cols-3">
+                  <div>{children}</div>
+                  <div className="col-span-2 mx-3">
+                    <DynamicGoogleMapSection />
+                    <h1>Map</h1>
+                  </div>
                 </div>
               </div>
-            </div>
-          </body>
+            </body>
+          </HydrationOverlay>
         </ThemeProvider>
       </NextIntlClientProvider>
     </html>

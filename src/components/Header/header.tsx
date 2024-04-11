@@ -20,7 +20,19 @@ export default function Header() {
   const t = useTranslations("Navbar");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuItems = [t("profile"), t("settings"), t("help&feedback"), t("logout")];
+  const menuItems = [
+    { label: t("moreaboutcampus"), path: "https://www.cuhk.edu.hk/chinese/campus/campus.html" },
+    { label: t("moreaboutschoolbus"), path: "https://transport.cuhk.edu.hk/" },
+    {
+      label: t("moreaboutfacility"),
+      path: "https://www.cuhk.edu.hk/chinese/campus/accommodation.html",
+    },
+    {
+      label: t("moreaboutmuseum"),
+      path: "https://www.cuhk.edu.hk/chinese/campus/library-museum.html",
+    },
+    { label: t("help&feedback"), path: "https://forms.gle/ChJdT9bf42xyzcb46" },
+  ];
 
   return (
     <Navbar maxWidth="full" isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -48,12 +60,14 @@ export default function Header() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
+              isExternal
+              showAnchorIcon
               className="w-full font-medium my-3"
-              color={index === menuItems.length - 1 ? "danger" : "foreground"}
-              href=""
+              color={index === menuItems.length - 1 ? "primary" : "foreground"}
+              href={item.path}
               size="lg"
             >
-              {item}
+              {item.label}
             </Link>
           </NavbarMenuItem>
         ))}

@@ -1,12 +1,27 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import { APIProvider, Map, useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
+import {
+  APIProvider,
+  Map,
+  useMap,
+  useMapsLibrary,
+  Marker,
+  AdvancedMarker,
+  Pin,
+} from "@vis.gl/react-google-maps";
 import { useApiIsLoaded, useApiLoadingStatus } from "@vis.gl/react-google-maps";
 
-import { DepartureContext } from "@/components/context/DepartureContext";
-import { DestinationContext } from "@/components/context/DestinationContext";
+import { DepartureContext } from "@/components/context/context";
+import { DestinationContext } from "@/components/context/context";
+import { ZoomContext } from "@/components/context/context";
+import { useGeoLocation } from "@custom-react-hooks/all";
 
 import { MapLoadingWidget } from "../loadingWidget";
+import Dynamic from "next/dynamic";
+const DynamicCurrentLocationMarker = Dynamic(() => import("./CurrentLocationMarker"), {
+  ssr: false,
+  loading: () => <MapLoadingWidget />,
+});
 
 const containerStyle = {
   width: "100%",
@@ -17,36 +32,53 @@ const containerStyle = {
 const center = {
   lat: 22.416389,
   lng: 114.211111,
+  // lat: 11.0168,
+  // lng: 76.9558,
 };
 
 function GoogleMapSection() {
   // useApiIsLoaded & useApiLoadingStatus are imported from @vis.gl/react-google-maps
   // But they are not working as expected
   const [isLoading, setIsLoading] = useState(true);
-  const { departure, setDeparture } = useContext(DepartureContext);
-  const { destination, setDestination } = useContext(DestinationContext);
+  // const isApiLoaded = useApiIsLoaded();
+  // const isApiLoading = useApiLoadingStatus();
+  const { loading, coordinates, error, isWatching } = useGeoLocation();
+  // console.log("isApiLoaded", isApiLoaded, "isApiLoading", isApiLoading);
 
   return (
     <APIProvider
+      version="quarterly"
       apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
       language="en"
       onLoad={() => {
         setIsLoading(false);
       }}
     >
-      {!isLoading ? (
-        <Map
-          style={containerStyle}
-          defaultCenter={center}
-          defaultZoom={14}
-          mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
-          clickableIcons={false}
-        >
-          <Directions />
-        </Map>
-      ) : (
-        <MapLoadingWidget />
-      )}
+      <Map
+        style={containerStyle}
+        defaultCenter={center}
+        defaultZoom={12}
+        mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
+        clickableIcons={false}
+      >
+        {/* <AdvancedMarker position={{ lat: 22.416389, lng: 114.211111 }}>
+          <div
+            style={{
+              width: 16,
+              height: 16,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              background: "blue",
+              border: "2px solid white",
+              borderRadius: "50%",
+              transform: "translate(-50%, -50%)",
+              boxShadow: "0px 0px 10px red",
+            }}
+          ></div>
+        </AdvancedMarker> */}
+        <DynamicCurrentLocationMarker />
+      </Map>
     </APIProvider>
   );
 }
@@ -81,14 +113,17 @@ function Directions() {
 
     directionsService
       .route({
-        origin: departure.name,
-        destination: destination.name,
+        origin: new google.maps.LatLng(departure.lat, departure.lng),
+        destination: new google.maps.LatLng(destination.lat, destination.lng),
         travelMode: google.maps.TravelMode.WALKING,
         provideRouteAlternatives: true,
       })
       .then((response) => {
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
+      })
+      .catch((e) => {
+        console.log(e);
       });
 
     // return () => directionsRenderer.setMap(null);

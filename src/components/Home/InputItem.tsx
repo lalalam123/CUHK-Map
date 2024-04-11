@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { DepartureContext } from "../context/DepartureContext";
-import { DestinationContext } from "../context/DestinationContext";
+import { DepartureContext } from "../context/context";
+import { DestinationContext } from "../context/context";
 import { FaPlaneDeparture } from "react-icons/fa6";
 import { FaPlaneArrival } from "react-icons/fa6";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
@@ -15,6 +15,11 @@ function InputItem({ type }: { type: string }) {
   const handleOnChange = (value: any) => {
     if (!value) {
       setValue(null);
+      if (type === "departure") {
+        setDeparture(null);
+      } else {
+        setDestination(null);
+      }
       return;
     }
 

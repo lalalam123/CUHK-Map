@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@builder.io/react-hydration-overlay": "^0.0.8",
+    "@custom-react-hooks/all": "^1.4.19",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@googlemaps/js-api-loader": "^1.16.6",
@@ -21,7 +23,7 @@
     "@vis.gl/react-google-maps": "^0.7.0",
     "axios": "^1.6.8",
     "framer-motion": "^11.0.21",
-    "next": "^14.1.4",
+    "next": "^14.2.0",
     "next-intl": "^3.11.1",
     "next-seo": "^6.5.0",
     "next-themes": "^0.3.0",
