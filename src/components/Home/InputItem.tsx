@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DepartureContext } from "../context/context";
 import { DestinationContext } from "../context/context";
 import { FaPlaneDeparture } from "react-icons/fa6";
@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 
 function InputItem({ type }: { type: string }) {
   const t = useTranslations("SearchSection");
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState<any>(null);
   const { departure, setDeparture } = useContext(DepartureContext);
   const { destination, setDestination } = useContext(DestinationContext);
 

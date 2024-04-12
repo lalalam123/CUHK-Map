@@ -13,7 +13,7 @@ export default function CurrentLocationMarker() {
   useEffect(() => {
     const interval = setInterval(() => {
       if (coordinates) {
-        console.log("coordinates", coordinates);
+        // console.log("coordinates", coordinates);
       }
     }, 60000); // Runs every 1 minute
     return () => clearInterval(interval); // Cleanup on component unmount
@@ -21,9 +21,9 @@ export default function CurrentLocationMarker() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("running", isFirstTime);
+      // console.log("running", isFirstTime);
       if (coordinates !== null && map && isFirstTime) {
-        console.log("Current Location is rendered on the map.");
+        // console.log("Current Location is rendered on the map.");
         // map.setCenter({ lat: coordinates.latitude, lng: coordinates.longitude });
         setisFirstTime(false);
       }

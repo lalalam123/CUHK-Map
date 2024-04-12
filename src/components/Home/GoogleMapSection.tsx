@@ -61,22 +61,7 @@ function GoogleMapSection() {
         mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
         clickableIcons={false}
       >
-        {/* <AdvancedMarker position={{ lat: 22.416389, lng: 114.211111 }}>
-          <div
-            style={{
-              width: 16,
-              height: 16,
-              position: "absolute",
-              top: 0,
-              left: 0,
-              background: "blue",
-              border: "2px solid white",
-              borderRadius: "50%",
-              transform: "translate(-50%, -50%)",
-              boxShadow: "0px 0px 10px red",
-            }}
-          ></div>
-        </AdvancedMarker> */}
+        <Directions />
         <DynamicCurrentLocationMarker />
       </Map>
     </APIProvider>
@@ -109,7 +94,7 @@ function Directions() {
   useEffect(() => {
     if (!directionsService || !directionsRenderer) return;
     if (!departure || !destination) return;
-    console.log("dep", departure, "des", destination);
+    // console.log("dep", departure, "des", destination);
 
     directionsService
       .route({

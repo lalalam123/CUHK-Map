@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InputItem from "./InputItem";
 import { DepartureContext } from "@/components/context/context";
 import { DestinationContext } from "@/components/context/context";
@@ -11,11 +11,6 @@ function SearchSection() {
   const { departure, setDeparture } = useContext(DepartureContext);
   const { destination, setDestination } = useContext(DestinationContext);
   const { loading, coordinates, error, isWatching } = useGeoLocation();
-
-  useEffect(() => {
-    console.log("departure", departure);
-  }, [departure]);
-
   return (
     <div className="p-5 md:pd-5 border-[2px] rounded-xl">
       <p className="text-[20px] font-bold">{t("getPath")}</p>
