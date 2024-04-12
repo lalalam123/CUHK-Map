@@ -49,5 +49,10 @@
   },
   "ErrorMessage": {
     "notFeature": "Sorry, this feature is currently not available, please try again later."
+  },
+  "Footer": {
+    "copyright": "© 2024 CUHK Map. All rights reserved.",
+    "testing": "This application is for the purpose of FYP submission at this stage, not yet public released for guest.",
+    "Github": "Contact: Github (lalalam123)"
   }
 }

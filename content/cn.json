@@ -49,5 +49,10 @@
   },
   "ErrorMessage": {
     "notFeature": "抱歉，這個服務暫時未開通，請嘗試其他服務能否解決閣下的需求，或到意見反饋區提出意見。"
+  },
+  "Footer": {
+    "copyright": "© 2024 中大地圖. 版權所有.",
+    "testing": "免責聲明:此為FYP習作,仍在測試階段,尚未正式推出予公眾使用",
+    "Github": "聯絡我們: Github (lalalam123)"
   }
 }

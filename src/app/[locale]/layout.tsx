@@ -27,6 +27,8 @@ import GoogleMapSection from "@/components/Home/GoogleMapSection";
 import dynamic from "next/dynamic";
 import { MapLoadingWidget } from "@/components/loadingWidget";
 
+import Footer from "@/components/Header/footer";
+
 const DynamicGoogleMapSection = dynamic(() => import("@/components/Home/GoogleMapSection"), {
   ssr: false,
   loading: () => <MapLoadingWidget />,
@@ -63,11 +65,11 @@ export default function RootLayout({ children, locale }: RootLayoutProps) {
                 <FeatureList />
                 <div className="p-6 grid grid-cols-1 sm:grid-cols-3">
                   <div>{children}</div>
-                  <div className="col-span-2 mx-3">
+                  <div className="col-span-2 sm:mx-3 sm:my-0 my-3">
                     <DynamicGoogleMapSection />
-                    <h1>Map</h1>
                   </div>
                 </div>
+                <Footer />
               </div>
             </body>
           </HydrationOverlay>

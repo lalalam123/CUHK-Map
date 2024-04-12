@@ -36,7 +36,6 @@ export default function CurrentLocationMarker() {
   return (
     !loading &&
     !error &&
-    map &&
     coordinates && (
       <AdvancedMarker position={{ lat: coordinates.latitude, lng: coordinates.longitude }}>
         {/* <AdvancedMarker position={{ lat: 22, lng: 114 }}> */}
