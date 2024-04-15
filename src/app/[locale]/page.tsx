@@ -14,7 +14,16 @@ import GoogleMapSection from "@/components/Home/GoogleMapSection";
 import { useApiLoadingStatus, useMap } from "@vis.gl/react-google-maps";
 
 const HomePage: React.FC = () => {
-  return <SearchSection />;
+  return (
+    <div className="p-6 grid grid-cols-1 sm:grid-cols-3">
+      <div>
+        <SearchSection />
+      </div>
+      <div className="col-span-2 sm:mx-3 sm:my-0 my-3">
+        <GoogleMapSection />
+      </div>
+    </div>
+  );
 };
 
 export default HomePage;

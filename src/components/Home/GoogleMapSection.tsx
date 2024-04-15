@@ -50,9 +50,9 @@ function GoogleMapSection() {
       version="quarterly"
       apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
       language="en"
-      onLoad={() => {
-        setIsLoading(false);
-      }}
+      // onLoad={() => {
+      //   setIsLoading(false);
+      // }}
     >
       <Map
         style={containerStyle}

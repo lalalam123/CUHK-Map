@@ -19,10 +19,11 @@
     "@mui/material": "^5.15.14",
     "@nextui-org/react": "^2.2.10",
     "@react-google-maps/api": "^2.19.3",
-    "@types/google.maps": "^3.55.3",
     "@vis.gl/react-google-maps": "^0.7.0",
     "axios": "^1.6.8",
     "framer-motion": "^11.0.21",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.1",
     "next": "^14.2.0",
     "next-intl": "^3.11.1",
     "next-seo": "^6.5.0",
@@ -33,9 +34,13 @@
     "react-google-places-autocomplete": "^4.0.1",
     "react-icons": "^5.0.1",
     "react-spinners": "^0.13.8",
-    "react-text-transition": "^3.1.0"
+    "react-text-transition": "^3.1.0",
+    "sweetalert2": "^11.10.7",
+    "sweetalert2-react-content": "^5.0.7"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.55.7",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

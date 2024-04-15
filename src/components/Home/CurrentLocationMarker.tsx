@@ -5,33 +5,8 @@ import { APIProvider, Map, Marker, AdvancedMarker, Pin } from "@vis.gl/react-goo
 import { useMap } from "@vis.gl/react-google-maps";
 
 export default function CurrentLocationMarker() {
-  const map = useMap();
+  // const map = useMap();
   const { loading, coordinates, error, isWatching } = useGeoLocation({}, true);
-
-  const [isFirstTime, setisFirstTime] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (coordinates) {
-        // console.log("coordinates", coordinates);
-      }
-    }, 60000); // Runs every 1 minute
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, [coordinates]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // console.log("running", isFirstTime);
-      if (coordinates !== null && map && isFirstTime) {
-        // console.log("Current Location is rendered on the map.");
-        // map.setCenter({ lat: coordinates.latitude, lng: coordinates.longitude });
-        setisFirstTime(false);
-      }
-    }, 60000); // Runs every 1 minute
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, [coordinates, map, isFirstTime]);
-
-  // console.table({ loading, coordinates, error, isWatching, map, isFirstTime });
 
   return (
     !loading &&
@@ -50,7 +25,7 @@ export default function CurrentLocationMarker() {
             border: "2px solid white",
             borderRadius: "50%",
             transform: "translate(-50%, -50%)",
-            boxShadow: "0px 0px 10px red",
+            boxShadow: "0px 0px 10px blue",
           }}
         ></div>
       </AdvancedMarker>

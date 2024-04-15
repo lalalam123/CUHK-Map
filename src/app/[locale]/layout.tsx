@@ -29,11 +29,6 @@ import { MapLoadingWidget } from "@/components/loadingWidget";
 
 import Footer from "@/components/Header/footer";
 
-const DynamicGoogleMapSection = dynamic(() => import("@/components/Home/GoogleMapSection"), {
-  ssr: false,
-  loading: () => <MapLoadingWidget />,
-});
-
 const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -63,12 +58,7 @@ export default function RootLayout({ children, locale }: RootLayoutProps) {
               <div className="w-full bg-white dark:bg-black text-slate-900 dark:text-white font-medium">
                 <Header />
                 <FeatureList />
-                <div className="p-6 grid grid-cols-1 sm:grid-cols-3">
-                  <div>{children}</div>
-                  <div className="col-span-2 sm:mx-3 sm:my-0 my-3">
-                    <DynamicGoogleMapSection />
-                  </div>
-                </div>
+                {children}
                 <Footer />
               </div>
             </body>
