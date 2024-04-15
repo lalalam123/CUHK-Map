@@ -6,6 +6,7 @@ type stop_id = number;
 export interface BusRouteType {
   route_id: number;
   name: string;
+  bgColor: string;
   serviceHours: string;
   departureTime: number[];
   isWeekdayOnly: boolean;
@@ -19,18 +20,111 @@ export const BusRoutes: BusRouteType[] = [
   {
     route_id: 1,
     name: "1A",
+    bgColor: "linear-gradient(to right, #ffd700, #ff8000)",
     serviceHours: "07:00 - 18:40",
     departureTime: [20, 40],
     isWeekdayOnly: true,
     stops: [1, 2, 3, 4, 5, 6],
   },
   {
+    route_id: 100,
+    name: "1B",
+    bgColor: "linear-gradient(to right, #ffd700, #ff8000)",
+    serviceHours: "08:00 - 18:00",
+    departureTime: [0],
+    isWeekdayOnly: true,
+    stops: [1, 2, 3, 4, 5, 6],
+  },
+  {
     route_id: 2,
     name: "2",
+    bgColor: "linear-gradient(to right, #ff0000, #ff1493)",
     serviceHours: "07:45 - 18:45",
     departureTime: [0, 15, 30, 45],
     isWeekdayOnly: true,
     stops: [1, 2, 3, 6],
+  },
+  {
+    route_id: 3,
+    name: "3",
+    bgColor: "linear-gradient(to right, #008000, #00FF00)",
+    serviceHours: "09:00 - 18:40",
+    departureTime: [0, 15, 30, 45],
+    isWeekdayOnly: true,
+    stops: [1, 2, 3],
+  },
+  {
+    route_id: 4,
+    name: "4",
+    bgColor: "linear-gradient(to right, #ff0000, #ff8000)",
+    serviceHours: "07:40 - 18:40",
+    departureTime: [0, 20, 40],
+    isWeekdayOnly: true,
+    stops: [1, 2],
+  },
+  {
+    route_id: 5,
+    name: "5",
+    bgColor: "linear-gradient(to right, #add8e6, #87cefa)", // light blue gradient
+    serviceHours: "09:18 - 17:26",
+    departureTime: [18, 22, 26],
+    isWeekdayOnly: true,
+    stops: [1, 2],
+  },
+  {
+    route_id: 6,
+    name: "6A",
+    bgColor: "linear-gradient(to right, #d2b48c, #8b4513)", // tea color gradient
+    serviceHours: "09:10 - 17:10",
+    departureTime: [10],
+    isWeekdayOnly: true,
+    stops: [1, 2],
+  },
+  {
+    route_id: 99,
+    name: "6B",
+    bgColor: "linear-gradient(to right, #00008b, #0000cd)", // dark blue gradient
+    serviceHours: "12:20 - 17:20",
+    departureTime: [20],
+    isWeekdayOnly: true,
+    stops: [1, 2],
+  },
+  {
+    route_id: 7,
+    name: "7",
+    bgColor: "linear-gradient(to right, #808080, #a9a9a9)", // gray gradient
+    serviceHours: "08:18 - 17:50",
+    departureTime: [18, 50],
+    isWeekdayOnly: true,
+    stops: [1, 2],
+  },
+  {
+    route_id: 8,
+    name: "8",
+    bgColor: "linear-gradient(to right, #fff060, 	#f0c200)",
+    serviceHours: "07:45 - 18:40",
+    departureTime: [0, 20, 40],
+    isWeekdayOnly: true,
+    stops: [1, 2],
+  },
+  {
+    route_id: 9,
+    name: "N",
+    bgColor: "linear-gradient(to right, #800080, #9932CC)",
+
+    serviceHours: "19:00 - 23:30",
+    departureTime: [0, 15, 30, 45],
+    isWeekdayOnly: true,
+    stops: [1, 2],
+  },
+  {
+    route_id: 10,
+    name: "H",
+    bgColor: "linear-gradient(to right, #800080, #e066ff)",
+    serviceHours: "08:20 - 23:20",
+    departureTime: [0, 20, 40],
+    isWeekdayOnly: false,
+    stops: [1, 2],
   },
 ];
 

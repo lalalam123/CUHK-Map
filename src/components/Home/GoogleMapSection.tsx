@@ -42,7 +42,6 @@ function GoogleMapSection() {
   const [isLoading, setIsLoading] = useState(true);
   const isApiLoaded = useApiIsLoaded();
   const isApiLoading = useApiLoadingStatus();
-  console.log("isApiLoaded", isApiLoaded, "isApiLoading", isApiLoading);
 
   return (
     <APIProvider

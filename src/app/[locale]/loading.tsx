@@ -6,8 +6,7 @@ const LoadingPage: React.FC = () => {
     <div
       style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}
     >
-      <MapLoadingWidget />
-      <h1>Loading...</h1>
+      <h1>Loading ... 等一陣 ;)</h1>
     </div>
   );
 };

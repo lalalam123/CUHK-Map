@@ -1,22 +1,25 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   APIProvider,
   Map,
   useMap,
   useMapsLibrary,
-  Marker,
   AdvancedMarker,
   Pin,
 } from "@vis.gl/react-google-maps";
-import { useApiIsLoaded, useApiLoadingStatus } from "@vis.gl/react-google-maps";
-import { useTranslations } from "next-intl";
-import { useGeoLocation } from "@custom-react-hooks/all";
 
 import { Button } from "@nextui-org/react";
 
-import { BusStops, BusStopsPath, BusRoutes, BusStopType, BusStopsPathType } from "./data";
+import {
+  BusStops,
+  BusStopsPath,
+  BusRoutes,
+  BusStopType,
+  BusStopsPathType,
+  BusRouteType,
+} from "./data";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -30,13 +33,6 @@ const containerStyle = {
 const center = {
   lat: 22.416389,
   lng: 114.211111,
-};
-
-type allRouteType = {
-  [key: string]: {
-    stop: google.maps.LatLngLiteral[];
-    route: google.maps.LatLngLiteral[];
-  };
 };
 
 const BusComponent: React.FC = () => {
@@ -64,11 +60,81 @@ const BusComponent: React.FC = () => {
 
     setPointToDisplay(stops);
     setPathToDisplay(path);
-
-    console.log("Stops", stops);
-    console.log("Path", path);
   }, [routeIndex]);
 
+  return (
+    <div>
+      <BusRouteSwitcherButtonGroups BusRoutes={BusRoutes} setRouteIndex={setRouteIndex} />
+      <p>{routeIndex}</p>
+      <p>
+        {BusRoutes.find((route) => route.name === routeIndex)?.serviceHours ||
+          "No information available"}
+      </p>
+      <p>
+        School Bus {routeIndex} operates from{" "}
+        {BusRoutes.find((route) => route.name === routeIndex)?.serviceHours || "00:00"} to{" "}
+        {BusRoutes.find((route) => route.name === routeIndex)?.serviceHours || "23:59"}
+        {BusRoutes.find((route) => route.name === routeIndex)?.isWeekdayOnly && " (Weekdays Only)"}
+      </p>
+      <APIProvider
+        version="quarterly"
+        apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
+        language="en"
+      >
+        <Map
+          style={containerStyle}
+          defaultCenter={center}
+          defaultZoom={15}
+          mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
+          clickableIcons={false}
+        >
+          <BusStopsComponents stops={pointToDisplay} />
+          <BusRoutesComponent path={pathToDisplay} />
+        </Map>
+      </APIProvider>
+    </div>
+  );
+};
+
+export default BusComponent;
+
+function BusRouteSwitcherButtonGroups({
+  BusRoutes,
+  setRouteIndex,
+}: {
+  BusRoutes: BusRouteType[];
+  setRouteIndex: React.Dispatch<React.SetStateAction<string>>;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "left",
+      }}
+    >
+      {BusRoutes.map((route, index) => (
+        <Button
+          key={index}
+          onClick={() => {
+            setRouteIndex(route.name);
+          }}
+          size="sm"
+          style={{
+            margin: "10px",
+            background: route.bgColor,
+            fontWeight: "bold",
+          }}
+        >
+          {`Bus ${route.name}`}
+        </Button>
+      ))}
+    </div>
+  );
+}
+
+function BusStopsComponents({ stops }: { stops: BusStopType[] }) {
   const showSwal = ({
     title,
     text,
@@ -87,50 +153,18 @@ const BusComponent: React.FC = () => {
     });
   };
 
-  return (
-    <div>
-      {BusRoutes.map((route, index) => (
-        <Button
-          key={index}
-          onClick={() => {
-            setRouteIndex(route.name);
-          }}
-        >
-          {`Bus ${route.name}`}
-        </Button>
-      ))}
-      <p>{routeIndex}</p>
-      <APIProvider
-        version="quarterly"
-        apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
-        language="en"
-      >
-        <Map
-          style={containerStyle}
-          defaultCenter={center}
-          defaultZoom={18}
-          mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
-          clickableIcons={false}
-        >
-          {pointToDisplay.map((stops: BusStopType, index: number) => (
-            <AdvancedMarker
-              key={index}
-              position={stops.location}
-              onClick={() => {
-                showSwal({ title: stops.name, text: `Next Bus:`, imageUrl: stops?.imageUrl || "" });
-              }}
-            >
-              <Pin background={"#9AC8CD"} glyphColor={"#E1F7F5"} borderColor={"#000"} />
-            </AdvancedMarker>
-          ))}
-          <BusRoutesComponent path={pathToDisplay} />
-        </Map>
-      </APIProvider>
-    </div>
-  );
-};
-
-export default BusComponent;
+  return stops.map((stops: BusStopType, index: number) => (
+    <AdvancedMarker
+      key={index}
+      position={stops.location}
+      onClick={() => {
+        showSwal({ title: stops.name, text: `Next Bus:`, imageUrl: stops?.imageUrl || "" });
+      }}
+    >
+      <Pin background={"#9AC8CD"} glyphColor={"#E1F7F5"} borderColor={"#000"} />
+    </AdvancedMarker>
+  ));
+}
 
 function BusRoutesComponent({ path }: { path: google.maps.LatLngLiteral[] }) {
   const map = useMap();
