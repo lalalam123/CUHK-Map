@@ -40,30 +40,31 @@ function GoogleMapSection() {
   // useApiIsLoaded & useApiLoadingStatus are imported from @vis.gl/react-google-maps
   // But they are not working as expected
   const [isLoading, setIsLoading] = useState(true);
-  // const isApiLoaded = useApiIsLoaded();
-  // const isApiLoading = useApiLoadingStatus();
-  const { loading, coordinates, error, isWatching } = useGeoLocation();
-  // console.log("isApiLoaded", isApiLoaded, "isApiLoading", isApiLoading);
+  const isApiLoaded = useApiIsLoaded();
+  const isApiLoading = useApiLoadingStatus();
+  console.log("isApiLoaded", isApiLoaded, "isApiLoading", isApiLoading);
 
   return (
     <APIProvider
       version="quarterly"
       apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
       language="en"
-      // onLoad={() => {
-      //   setIsLoading(false);
-      // }}
+      onLoad={() => {
+        setIsLoading(false);
+      }}
     >
-      <Map
-        style={containerStyle}
-        defaultCenter={center}
-        defaultZoom={12}
-        mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
-        clickableIcons={false}
-      >
-        <Directions />
-        <DynamicCurrentLocationMarker />
-      </Map>
+      {!isApiLoaded && isApiLoading === "NOT_LOADED" && !isLoading && (
+        <Map
+          style={containerStyle}
+          defaultCenter={center}
+          defaultZoom={12}
+          mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
+          clickableIcons={false}
+        >
+          <Directions />
+          <DynamicCurrentLocationMarker />
+        </Map>
+      )}
     </APIProvider>
   );
 }

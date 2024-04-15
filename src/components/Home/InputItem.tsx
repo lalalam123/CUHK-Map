@@ -12,6 +12,15 @@ function InputItem({ type }: { type: string }) {
   const { departure, setDeparture } = useContext(DepartureContext);
   const { destination, setDestination } = useContext(DestinationContext);
 
+  useEffect(() => {
+    if (departure && type === "departure") {
+      setValue({
+        label: departure.name,
+        value: { place_id: departure.placeID, types: departure.type },
+      });
+    }
+  }, [departure, type]);
+
   const handleOnChange = (value: any) => {
     if (!value) {
       setValue(null);
