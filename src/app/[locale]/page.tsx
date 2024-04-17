@@ -146,7 +146,7 @@ function PromptTipsWidget() {
   );
 }
 
-export async function explorePlaces(place: string) {
+async function explorePlaces(place: string) {
   try {
     const response = await fetch("api?query=" + place);
 
