@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
-        "X-Goog-Api-Key": "AIzaSyAeknMMRheQTIzncV3Lxu_0kVhQiX140Oc",
+        "X-Goog-Api-Key": process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
         "X-Goog-FieldMask":
           "places.name,places.displayName,places.types,places.formattedAddress,places.location,places.rating,places.currentOpeningHours",
       }),
