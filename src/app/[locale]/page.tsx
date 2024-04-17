@@ -6,10 +6,27 @@ import Swal from "sweetalert2";
 import TextTransition, { presets } from "react-text-transition";
 import { useTranslations } from "next-intl";
 
+type retDataType = {
+  places: Array<{
+    displayName: {
+      text: string;
+    };
+    formattedAddress: string;
+    currentOpeningHours: {
+      openNow: boolean;
+    };
+    types: Array<string>;
+    location: {
+      latitude: number;
+      longitude: number;
+    };
+  }>;
+};
+
 export default function ExplorePage() {
   const t = useTranslations("AskAI");
   const [input, setInput] = useState("");
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<retDataType | null>(null);
 
   console.log(data);
 
