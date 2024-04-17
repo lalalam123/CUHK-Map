@@ -44,18 +44,6 @@ export default function Header() {
         <p className="font-bold text-inherit">{t("title")}</p>
         <ThemeSwitcher />
       </NavbarContent>
-
-      {/* <NavbarContent justify="end">
-				<NavbarItem className="hidden lg:flex">
-					<Link href="#">Login</Link>
-				</NavbarItem>
-				<NavbarItem>
-					<Button as={Link} color="warning" href="#" variant="flat">
-						Sign Up
-					</Button>
-				</NavbarItem>
-			</NavbarContent> */}
-
       <NavbarMenu style={{ zIndex: 100 }}>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>

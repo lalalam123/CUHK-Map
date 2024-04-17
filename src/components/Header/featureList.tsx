@@ -64,7 +64,7 @@ const menuItems: MenuItem[] = [
     // bgColor: "#80B3FF",
     bgColor: spectrum[1],
     icon: <FaPersonWalking style={{ color: "#FFFFFF" }} />,
-    path: "/search",
+    path: "/path",
   },
   {
     label: "searchBus",

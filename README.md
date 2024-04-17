@@ -1,4 +1,7 @@
-## Current Result
+[![Generic badge](https://img.shields.io/badge/<Author:%20Jerry>-<Chan%20Sik%20Lam>-<COLOR>.svg)](https://shields.io/)
+[![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/)
+
+## Demo: https://cuhk-map.vercel.app/
 
 <div align="center">
 	<img src="demo.png" alt="Demo">

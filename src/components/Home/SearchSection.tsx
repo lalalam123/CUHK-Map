@@ -5,6 +5,14 @@ import { DepartureContext } from "@/components/context/context";
 import { DestinationContext } from "@/components/context/context";
 import { useTranslations } from "next-intl";
 import useGeoLocation from "@custom-react-hooks/use-geo-location";
+import { Button, Badge } from "@nextui-org/react";
+
+import { FaWheelchairMove } from "react-icons/fa6";
+import { FaBusAlt } from "react-icons/fa";
+import { FaPersonWalking } from "react-icons/fa6";
+import { FaPersonWalkingWithCane } from "react-icons/fa6";
+import { MdAssistWalker } from "react-icons/md";
+import { TbBikeOff } from "react-icons/tb";
 
 function SearchSection() {
   const t = useTranslations("SearchSection");
@@ -12,10 +20,9 @@ function SearchSection() {
   const { destination, setDestination } = useContext(DestinationContext);
   const { loading, coordinates, error, isWatching } = useGeoLocation();
   return (
-    <div className="p-5 md:pd-5 border-[2px] rounded-xl">
+    <div className="p-5 md:pd-5 border-[2px] rounded-xl gap-5">
       <p className="text-[20px] font-bold">{t("getPath")}</p>
       <InputItem type="departure" />
-      <InputItem type="destination" />
       <button
         disabled={loading && coordinates !== null}
         onClick={() => {
@@ -32,15 +39,34 @@ function SearchSection() {
         }}
         className="p-3 bg-gray-600 w-full rounded-lg mt-5 mb-2 text-white"
       >
-        {"current location as departure point"}
+        {t("useCurrentLocation")}
       </button>
-      <button onClick={() => {}} className="p-3 bg-gray-600 w-full rounded-lg mt-5 mb-2 text-white">
-        {t("search")}
-      </button>
-      <h1>{t("departure")}</h1>
+      <InputItem type="destination" />
+      <div className="flex flex-wrap gap-4 items-center justify-between mt-4 bg-colore-white">
+        <Button isIconOnly size="lg" color="success">
+          <FaPersonWalking />
+        </Button>
+        <Button isIconOnly size="lg" color="success">
+          <MdAssistWalker />
+        </Button>
+        <Button isIconOnly size="lg" color="default">
+          <TbBikeOff />
+        </Button>
+        <Button isIconOnly size="lg">
+          <FaBusAlt />
+        </Button>
+        <Button isIconOnly size="lg">
+          <FaWheelchairMove />
+        </Button>
+        <button onClick={() => {}} className="p-3 bg-gray-600 w-full rounded-lg mt-2 text-white">
+          {t("search")}
+        </button>
+      </div>
+
+      {/* <h1>{t("departure")}</h1>
       {departure && <p>{departure.name}</p>}
       <h1>{t("destination")}</h1>
-      {destination && <p>{destination.name}</p>}
+      {destination && <p>{destination.name}</p>} */}
     </div>
   );
 }

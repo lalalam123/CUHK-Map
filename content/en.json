@@ -38,7 +38,12 @@
     "getPath": "Get the path",
     "search": "Search",
     "departure": "Departure",
-    "destination": "Destination"
+    "destination": "Destination",
+    "walk": "Walk",
+    "bike": "Bike",
+    "car": "Car",
+    "wheelchair": "Wheelchair",
+    "useCurrentLocation": "Start from current location"
   },
   "WaitingMessage": {
     "loading": "Your map is loading ...",
@@ -54,5 +59,19 @@
     "copyright": "© 2024 CUHK Map. All rights reserved.",
     "testing": "This application is for the purpose of FYP submission at this stage, not yet public released for guest.",
     "Github": "Contact: Github (lalalam123)"
+  },
+  "Bus": {
+    "bus": "Bus",
+    "busRoute": "Bus Route",
+    "serviceTime": "Service Hours",
+    "isService": "is in service",
+    "isNotService": "is not in service"
+  },
+  "AskAI": {
+    "lookingFor": "Looking for places？",
+    "askAI": "Ask AI",
+    "explain": "This is your AI helper to help you find the information you need.\nJust ask me anything!",
+    "building": "Looking for some buildings?\nAsk AI e.g.\n\"Research building for computer science at CUHK\"",
+    "food": "Looking for some food?\nAsk AI e.g.\n\"Chinese Food at CUHK\""
   }
 }

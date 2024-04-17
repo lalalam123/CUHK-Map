@@ -1,5 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
+import useGeoLocation from "@custom-react-hooks/use-geo-location";
 import {
   APIProvider,
   Map,
@@ -14,14 +15,9 @@ import { useApiIsLoaded, useApiLoadingStatus } from "@vis.gl/react-google-maps";
 import { DepartureContext } from "@/components/context/context";
 import { DestinationContext } from "@/components/context/context";
 import { ZoomContext } from "@/components/context/context";
-import { useGeoLocation } from "@custom-react-hooks/all";
 
 import { MapLoadingWidget } from "../loadingWidget";
 import Dynamic from "next/dynamic";
-const DynamicCurrentLocationMarker = Dynamic(() => import("./CurrentLocationMarker"), {
-  ssr: false,
-  loading: () => <MapLoadingWidget />,
-});
 
 const containerStyle = {
   width: "100%",
@@ -42,6 +38,7 @@ function GoogleMapSection() {
   const [isLoading, setIsLoading] = useState(true);
   const isApiLoaded = useApiIsLoaded();
   const isApiLoading = useApiLoadingStatus();
+  const { loading, coordinates, error, isWatching } = useGeoLocation({}, true);
 
   return (
     <APIProvider
@@ -60,8 +57,27 @@ function GoogleMapSection() {
           mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
           clickableIcons={false}
         >
-          <Directions />
-          <DynamicCurrentLocationMarker />
+          <Directions />( !loading && !error && coordinates && (
+          {!loading && coordinates !== null && (
+            <AdvancedMarker position={{ lat: coordinates.latitude, lng: coordinates.longitude }}>
+              {/* <AdvancedMarker position={{ lat: 22, lng: 114 }}> */}
+              <div
+                style={{
+                  width: 16,
+                  height: 16,
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  background: "blue",
+                  border: "2px solid white",
+                  borderRadius: "50%",
+                  transform: "translate(-50%, -50%)",
+                  boxShadow: "0px 0px 10px blue",
+                }}
+              ></div>
+            </AdvancedMarker>
+          )}
+          ) )
         </Map>
       )}
     </APIProvider>

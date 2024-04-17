@@ -55,10 +55,10 @@ export default function RootLayout({ children, locale }: RootLayoutProps) {
         <ThemeProvider>
           <HydrationOverlay>
             <body className={inter.className}>
-              <div className="w-full bg-white dark:bg-black text-slate-900 dark:text-white font-medium">
+              <div className="w-full bg-white dark:bg-black text-slate-900 dark:text-white font-medium flex flex-col min-h-screen">
                 <Header />
                 <FeatureList />
-                {children}
+                <div className="flex-grow">{children}</div>
                 <Footer />
               </div>
             </body>
