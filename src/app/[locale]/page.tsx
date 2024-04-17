@@ -28,8 +28,6 @@ export default function ExplorePage() {
   const [input, setInput] = useState("");
   const [data, setData] = useState<retDataType | null>(null);
 
-  console.log(data);
-
   const handleSubmit = useCallback(async ({ e, value }: { e: any; value: string }) => {
     e.preventDefault();
     try {
@@ -76,11 +74,10 @@ export default function ExplorePage() {
         display: "flex",
         flexDirection: "column",
         height: "80vh",
-        justifyContent: "flex-end",
         padding: "10px",
       }}
     >
-      <div style={{ marginTop: "10px", overflow: "auto", flex: "1 1 auto" }}>
+      <div style={{ marginTop: "10px", overflow: "auto", flex: "1 1 40vh" }}>
         {data &&
           data.places.map((place, index) => (
             <Card key={index} className="py-4 my-4">
