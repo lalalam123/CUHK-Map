@@ -124,7 +124,7 @@ export default function ExplorePage() {
   );
 }
 
-export function PromptTipsWidget() {
+function PromptTipsWidget() {
   const t = useTranslations("AskAI");
   const [index, setIndex] = React.useState(0);
   const TEXTS = [t("explain"), t("building"), t("food")];
