@@ -73,5 +73,12 @@
     "explain": "AI人工智能機械人，幫你發現更多新地方",
     "building": "忘記了地點的名稱？\n問AI吧\n例如:\"中文大學 計算機科學 大樓\"",
     "food": "尋找中大美食？\n問AI吧\n例如:\"中文大學 食堂\""
+  },
+  "NewPoint": {
+    "create": "創作",
+    "cancel": "取消",
+    "commentPoint": "為你現在的地點提出評論",
+    "commentLimits": "最多10個字元",
+    "noEmpty": "親 評論不能為空白"
   }
 }

@@ -68,10 +68,17 @@
     "isNotService": "is not in service"
   },
   "AskAI": {
-    "lookingFor": "Looking for places？",
+    "lookingFor": "Looking for places?",
     "askAI": "Ask AI",
     "explain": "This is your AI helper to help you find the information you need.\nJust ask me anything!",
     "building": "Looking for some buildings?\nAsk AI e.g.\n\"Research building for computer science at CUHK\"",
     "food": "Looking for some food?\nAsk AI e.g.\n\"Chinese Food at CUHK\""
+  },
+  "NewPoint": {
+    "create": "create",
+    "cancel": "cancel",
+    "commentPoint": "Comment your current location",
+    "commentLimits": "Maximum 10 characters",
+    "noEmpty": "Please enter a comment"
   }
 }

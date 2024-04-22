@@ -1,5 +1,5 @@
-[![Generic badge](https://img.shields.io/badge/<Author:%20Jerry>-<Chan%20Sik%20Lam>-<COLOR>.svg)](https://shields.io/)
 [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/)
+[![Generic badge](https://img.shields.io/badge/Author-Chan%20Sik%20Lam%20Jerry-<COLOR>.svg)](https://shields.io/)
 
 ## Demo: https://cuhk-map.vercel.app/
 

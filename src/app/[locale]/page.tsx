@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useCallback } from "react";
 import { Input, Button } from "@nextui-org/react";
-import { Card, CardHeader, CardBody, CardFooter, Link } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Link, Image } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import TextTransition, { presets } from "react-text-transition";
 import { useTranslations } from "next-intl";
@@ -77,9 +77,11 @@ export default function ExplorePage() {
         padding: "10px",
       }}
     >
-      <div style={{ marginTop: "10px", overflow: "auto", flex: "1 1 40vh" }}>
-        {data &&
-          data.places.map((place, index) => (
+      {data && (
+        <div
+          style={{ marginTop: "10px", overflow: "auto", flex: data == null ? "20vh" : "1 1 60vh" }}
+        >
+          {data.places.map((place, index) => (
             <Card key={index} className="py-4 my-4">
               <CardHeader className="gap-5 pb-0 pt-2 px-4 flex-col items-start">
                 <h6 className="font-bold text-large">{place.displayName.text}</h6>
@@ -115,7 +117,8 @@ export default function ExplorePage() {
               </CardFooter>
             </Card>
           ))}
-      </div>
+        </div>
+      )}
       {!data && <PromptTipsWidget />}
       <div style={{ padding: "10px" }}>
         <form
@@ -138,6 +141,8 @@ export default function ExplorePage() {
   );
 }
 
+import { DrivingBusWidget } from "@/components/widgets";
+
 function PromptTipsWidget() {
   const t = useTranslations("AskAI");
   const [index, setIndex] = React.useState(0);
@@ -150,9 +155,11 @@ function PromptTipsWidget() {
     return () => clearTimeout(intervalId);
   }, []);
   return (
-    <div className="flex flex-col gap-5 justify-center items-center h-12 p-10">
+    <div className="flex flex-col gap-5 justify-center items-center h-dvh p-10">
+      {/* <DrivingBusWidget /> */}
+      <Image src="/bus.gif" alt="AskAI" style={{ width: "100%", height: "auto" }} />
       <h1 color="#AAAAAA">
-        <TextTransition className="text-gray-400" springConfig={presets.wobbly}>
+        <TextTransition className="text-gray-400 text-center" springConfig={presets.wobbly}>
           {TEXTS[index % TEXTS.length]}
         </TextTransition>
       </h1>
