@@ -141,8 +141,6 @@ export default function ExplorePage() {
   );
 }
 
-import { DrivingBusWidget } from "@/components/widgets";
-
 function PromptTipsWidget() {
   const t = useTranslations("AskAI");
   const [index, setIndex] = React.useState(0);
@@ -156,7 +154,6 @@ function PromptTipsWidget() {
   }, []);
   return (
     <div className="flex flex-col gap-5 justify-center items-center h-dvh p-10">
-      {/* <DrivingBusWidget /> */}
       <Image src="/bus.gif" alt="AskAI" style={{ width: "100%", height: "auto" }} />
       <h1 color="#AAAAAA">
         <TextTransition className="text-gray-400 text-center" springConfig={presets.wobbly}>
