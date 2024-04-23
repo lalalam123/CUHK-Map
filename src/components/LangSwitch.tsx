@@ -19,8 +19,8 @@ const LangSwitcher: React.FC = () => {
   const [isOptionsExpanded, setIsOptionsExpanded] = useState(false);
 
   const options: Option[] = [
-    { country: t("en"), code: "en", flag: "./en-flag.png" },
-    { country: t("cn"), code: "cn", flag: "./cn-flag.png" },
+    { country: t("en"), code: "en", flag: "/en-flag.png" },
+    { country: t("cn"), code: "cn", flag: "/cn-flag.png" },
   ];
 
   const setOption = (option: Option) => {

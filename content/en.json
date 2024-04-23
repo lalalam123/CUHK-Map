@@ -76,9 +76,11 @@
   },
   "NewPoint": {
     "create": "create",
+    "created": "Success",
     "cancel": "cancel",
     "commentPoint": "Comment your current location",
     "commentLimits": "Maximum 10 characters",
-    "noEmpty": "Please enter a comment"
+    "noEmpty": "Please enter a comment",
+    "addYourComment": "Add Your Comment"
   }
 }

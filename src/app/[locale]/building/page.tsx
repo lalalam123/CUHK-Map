@@ -21,7 +21,7 @@ import { useTranslations } from "next-intl";
 import { containerStyle, center, zoom } from "@/components/MapUtils/MapConfigs";
 
 type commentType = {
-  key: string;
+  _id: string;
   content?: string;
   lat: number;
   lng: number;
@@ -46,20 +46,29 @@ const colorList = [
   "#FF0000", // Red
 ];
 
-const comments: commentType[] = [
-  { key: "1", content: "新宿最強", lat: 22.4171, lng: 114.2111 },
-  { key: "2", content: "何宿最強", lat: 22.4174, lng: 114.2111 },
-  { key: "3", content: "應林最強", lat: 22.4166, lng: 114.2107 },
-  { key: "4", content: "煲底相見", lat: 22.4194, lng: 114.2079 },
-  { key: "5", content: "天台好凍", lat: 22.4198, lng: 114.2092 },
-  { key: "6", content: "Reg科聖地", lat: 22.4197, lng: 114.2063 },
-  { key: "7", content: "和盡天地風雲之聲", lat: 22.4224, lng: 114.2043 },
-  { key: "8", content: "畢唔到業", lat: 22.4196, lng: 114.2052 },
-  { key: "9", content: "賤橋", lat: 22.4184, lng: 114.2073 },
-  { key: "10", content: "天人合一", lat: 22.4215, lng: 114.2099 },
-];
+// const comments: commentType[] = [
+//   { content: "新宿最強", lat: 22.4171, lng: 114.2111 },
+//   { content: "何宿最強", lat: 22.4174, lng: 114.2111 },
+//   { content: "應林最強", lat: 22.4166, lng: 114.2107 },
+//   { content: "煲底相見", lat: 22.4194, lng: 114.2079 },
+//   { content: "天台好凍", lat: 22.4198, lng: 114.2092 },
+//   { content: "Reg科聖地", lat: 22.4197, lng: 114.2063 },
+//   { content: "和盡天地風雲之聲", lat: 22.4224, lng: 114.2043 },
+//   { content: "畢唔到業", lat: 22.4196, lng: 114.2052 },
+//   { content: "賤橋", lat: 22.4184, lng: 114.2073 },
+//   {  content: "天人合一", lat: 22.4215, lng: 114.2099 },
+// ];
 
-export default function page() {
+export default function BuildingComponent() {
+  // query comments
+  const [comments, setComments] = useState<commentType[]>([]);
+
+  useEffect(() => {
+    getComment().then((data) => {
+      setComments(data.data);
+    });
+  }, []);
+
   return (
     <div>
       <APIProvider
@@ -74,7 +83,7 @@ export default function page() {
           mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
           clickableIcons={false}
         >
-          {<Markers points={comments} />}
+          {<Markers data={comments} />}
           <FloatingActionBtn />
           <CurrentLocationPointer />
         </Map>
@@ -91,10 +100,14 @@ const FloatingActionBtn = () => {
     !loading &&
     coordinates && (
       <Button
-        isIconOnly
         color="secondary"
         size="lg"
-        style={{ position: "fixed", bottom: "40px", right: "40px" }}
+        style={{
+          position: "fixed",
+          bottom: "40px",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
         onClick={() => {
           Swal.fire({
             title: t("commentPoint"),
@@ -112,25 +125,26 @@ const FloatingActionBtn = () => {
             allowOutsideClick: () => !Swal.isLoading(),
           }).then((result) => {
             if (result.isConfirmed) {
-              comments.push({
-                key: result.value.substring(0, 10),
+              postComment({
                 content: result.value.substring(0, 10),
-                lat: coordinates?.latitude,
-                lng: coordinates?.longitude,
+                lat: parseFloat(coordinates?.latitude.toFixed(4)),
+                lng: parseFloat(coordinates?.longitude.toFixed(4)),
               });
+              Swal.fire(t("created"), "", "success");
             }
           });
         }}
       >
         <MdAddLocationAlt />
+        {t("addYourComment")}
       </Button>
     )
   );
 };
 
-type Props = { points: commentType[] };
+type Props = { data: commentType[] };
 
-const Markers = ({ points }: Props) => {
+const Markers = ({ data }: Props) => {
   // const colorList = ["#FF5733", "#C70039", "#900C3F", "#581845", "#1C2833", "#17202A"];
   const map = useMap();
   const [markers, setMarkers] = useState<{ [key: string]: Marker }>({});
@@ -142,7 +156,7 @@ const Markers = ({ points }: Props) => {
       clusterer.current = new MarkerClusterer({
         map,
         algorithm: new SuperClusterAlgorithm({
-          maxZoom: 20,
+          maxZoom: 18,
           radius: 100,
         }),
       });
@@ -173,27 +187,28 @@ const Markers = ({ points }: Props) => {
   const [colors, setColors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    const newColors = points.reduce(
+    const newColors = data.reduce(
       (acc, point) => {
-        if (!acc[point.key]) {
-          acc[point.key] = "#" + Math.floor(Math.random() * 16777215).toString(16);
+        if (!acc[point._id]) {
+          acc[point._id] = "#" + Math.floor(Math.random() * 16777215).toString(16);
         }
         return acc;
       },
       { ...colors }
     );
     setColors(newColors);
-  }, [points]);
+  }, [data]);
 
   return (
     <>
-      {points.map((point, index) => {
+      {data.map((point, index) => {
         const color = colorList[index % colorList.length]; // Use modulus to cycle through color list
+        console.log(point);
         return (
           <AdvancedMarker
-            position={point}
-            key={point.key}
-            ref={(marker) => setMarkerRef(marker, point.key)}
+            position={new google.maps.LatLng(point.lat, point.lng)}
+            key={point._id}
+            ref={(marker) => setMarkerRef(marker, point._id)}
           >
             <h1
               style={{
@@ -211,3 +226,45 @@ const Markers = ({ points }: Props) => {
     </>
   );
 };
+
+async function getComment() {
+  try {
+    const response = await fetch("api/comment");
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+async function postComment({ content, lat, lng }: { content: string; lat: number; lng: number }) {
+  try {
+    const response = await fetch("api/comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content,
+        lat,
+        lng,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}

@@ -40,7 +40,8 @@
     "react-text-transition": "^3.1.0",
     "react-timer-hook": "^3.0.7",
     "sweetalert2": "^11.10.7",
-    "sweetalert2-react-content": "^5.0.7"
+    "sweetalert2-react-content": "^5.0.7",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/google.maps": "^3.55.7",

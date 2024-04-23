@@ -157,7 +157,14 @@ function PromptTipsWidget() {
       <Image src="/bus.gif" alt="AskAI" style={{ width: "100%", height: "auto" }} />
       <h1 color="#AAAAAA">
         <TextTransition className="text-gray-400 text-center" springConfig={presets.wobbly}>
-          {TEXTS[index % TEXTS.length]}
+          <span
+            style={{
+              whiteSpace: "pre-wrap",
+            }}
+            data-bind="text: copyright"
+          >
+            {TEXTS[index % TEXTS.length]}
+          </span>
         </TextTransition>
       </h1>
     </div>
