@@ -72,6 +72,7 @@ export default function ExplorePage() {
     <div
       style={{
         display: "flex",
+        justifyContent: "center",
         flexDirection: "column",
         height: "80vh",
         padding: "10px",
@@ -153,7 +154,7 @@ function PromptTipsWidget() {
     return () => clearTimeout(intervalId);
   }, []);
   return (
-    <div className="flex flex-col gap-5 justify-center items-center h-dvh p-10">
+    <div className="flex flex-col gap-10 justify-center items-center h-auto p-10">
       <Image src="/bus.gif" alt="AskAI" style={{ width: "100%", height: "auto" }} />
       <h1 color="#AAAAAA">
         <TextTransition className="text-gray-400 text-center" springConfig={presets.wobbly}>
