@@ -18,6 +18,8 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 
+import { containerStyle, campusCenter } from "@/components/MapUtils/MapConfigs";
+
 import {
   BusStops,
   BusStopsPath,
@@ -27,21 +29,22 @@ import {
   BusRouteType,
 } from "./data";
 
-const containerStyle = {
-  width: "100%",
-  height: "100vh",
-  borderColor: "black",
-};
-
-const center = {
-  lat: 22.416389,
-  lng: 114.211111,
-};
-
 const BusPage: React.FC = () => {
+  const t = useTranslations("Bus");
   const [routeIndex, setRouteIndex] = useState<string>("1A");
   const [pointToDisplay, setPointToDisplay] = useState<any>([]);
   const [pathToDisplay, setPathToDisplay] = useState<any>([]);
+
+  useEffect(() => {
+    Swal.fire({
+      title: t("popupTitle"),
+      text: t("popupText"),
+      footer: t("popupFooter"),
+      icon: "info",
+      confirmButtonColor: "#000",
+      confirmButtonText: t("popupConfirm"),
+    });
+  }, []);
 
   useEffect(() => {
     const stopsSequence = BusRoutes.filter((route) => route.name === routeIndex)[0]?.stops || [];
@@ -91,8 +94,8 @@ const BusPage: React.FC = () => {
       >
         <Map
           style={containerStyle}
-          defaultCenter={center}
-          defaultZoom={15}
+          defaultCenter={campusCenter}
+          defaultZoom={17}
           mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
           clickableIcons={false}
         >
@@ -279,14 +282,15 @@ function BusStopsComponents({ stops }: { stops: BusStopType[] }) {
       onClick={() => {
         showSwal({
           title: stops.name,
-          text: `Next Bus: 1A in 5 Mins`,
+          text: `Next bus arrive in 15-20 minutues`,
           imageUrl: stops?.imageUrl || "",
         });
       }}
     >
       <Pin background={"#8B008B"} glyphColor={"#E1F7F5"} borderColor={"#000"} scale={1.5}>
-        {/* <h1>{index + 1}</h1> */}
-        <h1>{stops.stop_id}</h1>
+        {/* Testing: stops.stop_id // Deployment: index+1 */}
+        <h1>{index + 1}</h1>
+        {/* <h1>{stops.stop_id}</h1> */}
       </Pin>
     </AdvancedMarker>
   ));

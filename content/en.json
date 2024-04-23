@@ -65,7 +65,11 @@
     "busRoute": "Bus Route",
     "serviceTime": "Service Hours",
     "isService": "is in service",
-    "isNotService": "is not in service"
+    "isNotService": "is not in service",
+    "popupTitle": "Welcome to CUHK Bus Service",
+    "popupText": "This service is only available to students & staff, tourists should arrange their own transportation.",
+    "popupFooter": "If necessary, Transport Office Staff can request passengers to show valid CUHK identify documents.",
+    "popupConfirm": "Understand & Agree"
   },
   "AskAI": {
     "lookingFor": "Looking for places?",

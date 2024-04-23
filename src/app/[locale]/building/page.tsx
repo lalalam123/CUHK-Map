@@ -4,7 +4,7 @@ import { MapLoadingWidget } from "@/components/loadingWidget";
 import { MdAddLocationAlt } from "react-icons/md";
 import { useGeoLocation } from "@custom-react-hooks/all";
 import Swal from "sweetalert2";
-import { CurrentLocationPointer } from "@/components/MapUtils/CurrentLocationPointer";
+import CurrentLocationMarker from "@/components/Home/CurrentLocationMarker";
 import { Button } from "@nextui-org/react";
 
 import {
@@ -46,19 +46,6 @@ const colorList = [
   "#FF0000", // Red
 ];
 
-// const comments: commentType[] = [
-//   { content: "新宿最強", lat: 22.4171, lng: 114.2111 },
-//   { content: "何宿最強", lat: 22.4174, lng: 114.2111 },
-//   { content: "應林最強", lat: 22.4166, lng: 114.2107 },
-//   { content: "煲底相見", lat: 22.4194, lng: 114.2079 },
-//   { content: "天台好凍", lat: 22.4198, lng: 114.2092 },
-//   { content: "Reg科聖地", lat: 22.4197, lng: 114.2063 },
-//   { content: "和盡天地風雲之聲", lat: 22.4224, lng: 114.2043 },
-//   { content: "畢唔到業", lat: 22.4196, lng: 114.2052 },
-//   { content: "賤橋", lat: 22.4184, lng: 114.2073 },
-//   {  content: "天人合一", lat: 22.4215, lng: 114.2099 },
-// ];
-
 export default function BuildingComponent() {
   // query comments
   const [comments, setComments] = useState<commentType[]>([]);
@@ -85,7 +72,7 @@ export default function BuildingComponent() {
         >
           {<Markers data={comments} />}
           <FloatingActionBtn />
-          <CurrentLocationPointer />
+          <CurrentLocationMarker />
         </Map>
       </APIProvider>
     </div>
@@ -145,7 +132,6 @@ const FloatingActionBtn = () => {
 type Props = { data: commentType[] };
 
 const Markers = ({ data }: Props) => {
-  // const colorList = ["#FF5733", "#C70039", "#900C3F", "#581845", "#1C2833", "#17202A"];
   const map = useMap();
   const [markers, setMarkers] = useState<{ [key: string]: Marker }>({});
   const clusterer = useRef<MarkerClusterer | null>(null);
@@ -202,8 +188,7 @@ const Markers = ({ data }: Props) => {
   return (
     <>
       {data.map((point, index) => {
-        const color = colorList[index % colorList.length]; // Use modulus to cycle through color list
-        console.log(point);
+        const color = colorList[index % colorList.length];
         return (
           <AdvancedMarker
             position={new google.maps.LatLng(point.lat, point.lng)}

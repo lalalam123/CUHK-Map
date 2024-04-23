@@ -9,4 +9,9 @@ export const center = {
   lng: 114.207207,
 };
 
-export const zoom = 19;
+export const campusCenter = {
+  lat: 22.417258,
+  lng: 114.209029,
+};
+
+export const zoom = 18;

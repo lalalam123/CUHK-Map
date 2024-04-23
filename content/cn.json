@@ -65,7 +65,11 @@
     "busRoute": "校巴路線",
     "serviceTime": "服務時間",
     "isService": "服務中",
-    "isNotService": "休息中"
+    "isNotService": "休息中",
+    "popupTitle": "中大校巴服務",
+    "popupText": "中大學生及教職員限定，訪客請自行安排交通",
+    "popupFooter": "中大校巴職員或會向乘客要求出示中大相關證明文件",
+    "popupConfirm": "明白並同意"
   },
   "AskAI": {
     "lookingFor": "你在找什麼？",
