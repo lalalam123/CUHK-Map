@@ -86,5 +86,9 @@
     "commentLimits": "Maximum 10 characters",
     "noEmpty": "Please enter a comment",
     "addYourComment": "Add Your Comment"
+  },
+  "Canteen": {
+    "title": "Canteen Details",
+    "open": "Open in Google Maps"
   }
 }

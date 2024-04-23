@@ -86,5 +86,9 @@
     "commentLimits": "最多10個字元",
     "noEmpty": "親 評論不能為空白",
     "addYourComment": "提交你的想法"
+  },
+  "Canteen": {
+    "title": "飯堂資訊",
+    "open": "谷歌地圖上搜尋"
   }
 }

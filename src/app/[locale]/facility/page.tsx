@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MapLoadingWidget } from "@/components/loadingWidget";
 import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 import {
   APIProvider,
@@ -25,25 +26,6 @@ const center = {
   lng: 114.211111,
 };
 
-type commentType = {
-  id: number;
-  content: string;
-  coordinate: { lat: number; lng: number };
-};
-
-const comments: commentType[] = [
-  {
-    id: 1,
-    content: "Good",
-    coordinate: { lat: 22.417136, lng: 114.210907 },
-  },
-  {
-    id: 2,
-    content: "Bad",
-    coordinate: { lat: 22.417135, lng: 114.210908 },
-  },
-];
-
 export default function page() {
   return (
     <div>
@@ -59,26 +41,65 @@ export default function page() {
           mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
           clickableIcons={false}
         >
-          {/* {comments.map((comment) => (
-            <AdvancedMarker
-              key={comment.id}
-              position={comment.coordinate}
-              onClick={() => {
-                Swal.fire({
-                  text: comment.content,
-                });
-              }}
-            >
-              <h1 style={{ fontSize: "2em", color: "#000000" }}>{comment.content}</h1>
-            </AdvancedMarker>
-          ))} */}
           {
             <Markers
               points={[
-                { key: "1", lat: 22.4171, lng: 114.2111 },
-                { key: "2", lat: 22.4172, lng: 114.2112 },
-                { key: "3", lat: 22.4171, lng: 114.2112 },
-                { key: "4", lat: 22.4172, lng: 114.2111 },
+                {
+                  key: "2",
+                  type: "🌄",
+                  url: "/Attractions/lake.png",
+                  description: "獅子亭",
+                  lat: 22.416039,
+                  lng: 114.209333,
+                },
+                {
+                  key: "3",
+                  type: "⛲",
+                  url: "/Attractions/lake.png",
+                  description: "未圓湖",
+                  lat: 22.4163,
+                  lng: 114.210031,
+                },
+                {
+                  key: "4",
+                  type: "⛰️",
+                  url: "/Attractions/bridge.png",
+                  description: "小橋流水 - 校友徑",
+                  lat: 22.416332,
+                  lng: 114.207028,
+                },
+                {
+                  key: "5",
+                  type: "🛰️",
+                  url: "",
+                  description: "賽馬會氣候變化博物館",
+                  lat: 22.416242,
+                  lng: 114.211024,
+                },
+                {
+                  key: "6",
+                  type: "🗼",
+                  url: "",
+                  description: "新亞水塔",
+                  lat: 22.420742,
+                  lng: 114.208552,
+                },
+                {
+                  key: "7",
+                  type: "⛲",
+                  url: "/Attractions/pavilion.png",
+                  description: "天人合一",
+                  lat: 22.421639,
+                  lng: 114.210049,
+                },
+                {
+                  key: "8",
+                  type: "🌇",
+                  url: "/Attractions/lws.png",
+                  description: "和聲書院",
+                  lat: 22.422531,
+                  lng: 114.204243,
+                },
               ]}
             />
           }
@@ -88,7 +109,14 @@ export default function page() {
   );
 }
 
-type Point = { key: string; lat: number; lng: number };
+type Point = {
+  key: string;
+  type: string;
+  url: string;
+  description: string;
+  lat: number;
+  lng: number;
+};
 type Props = { points: Point[] };
 
 const Markers = ({ points }: Props) => {
@@ -131,11 +159,27 @@ const Markers = ({ points }: Props) => {
           position={point}
           key={point.key}
           ref={(marker) => setMarkerRef(marker, point.key)}
+          onClick={() => {
+            showSwal({
+              title: point.description,
+              text: ``,
+              imageUrl: point.url || "",
+            });
+          }}
         >
-          {/* <span className="tree">🌳</span> */}
-          <h1 style={{ fontSize: "1.5em", color: "#000000" }}>{"🌳"}</h1>
+          <h1 style={{ fontSize: "1.5em", color: "#000000" }}>{point.type}</h1>
         </AdvancedMarker>
       ))}
     </>
   );
+};
+
+const showSwal = ({ title, text, imageUrl }: { title: string; text: string; imageUrl: string }) => {
+  withReactContent(Swal).fire({
+    title: title,
+    text: text,
+    confirmButtonColor: "#000",
+    imageUrl: imageUrl,
+    imageAlt: "Bus Stop Image",
+  });
 };

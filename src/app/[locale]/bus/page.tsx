@@ -3,6 +3,7 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Button, Badge } from "@nextui-org/react";
+import CurrentLocationMarker from "@/components/Home/CurrentLocationMarker";
 
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
@@ -99,6 +100,7 @@ const BusPage: React.FC = () => {
           mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID?.toString() || ""}
           clickableIcons={false}
         >
+          <CurrentLocationMarker />
           <BusStopsComponents stops={pointToDisplay} />
           <BusRoutesComponent path={pathToDisplay} />
         </Map>
