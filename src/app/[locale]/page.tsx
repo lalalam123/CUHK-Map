@@ -155,7 +155,11 @@ function PromptTipsWidget() {
   }, []);
   return (
     <div className="flex flex-col gap-10 justify-center items-center h-auto p-10">
-      <Image src="/bus.gif" alt="AskAI" style={{ width: "100%", height: "auto" }} />
+      <Image
+        src="/bus.gif"
+        alt="AskAI"
+        style={{ width: "80%", height: "auto", margin: "0 auto" }}
+      />
       <h1 color="#AAAAAA">
         <TextTransition className="text-gray-400 text-center" springConfig={presets.wobbly}>
           <span
