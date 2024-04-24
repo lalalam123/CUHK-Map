@@ -4,7 +4,7 @@ import { Inter, Montserrat } from "next/font/google";
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
 import "../globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
+import { Analytics } from "@vercel/analytics/react";
 import {
   APIProvider,
   Map,
@@ -62,6 +62,7 @@ export default function RootLayout({ children, locale }: RootLayoutProps) {
                 <div className="flex-grow">{children}</div>
                 <Footer />
                 <SpeedInsights />
+                <Analytics />
               </div>
             </body>
           </HydrationOverlay>
